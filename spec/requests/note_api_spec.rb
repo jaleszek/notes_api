@@ -1,8 +1,19 @@
 require 'spec_helper'
 
 describe 'Note API' do
+  let(:password){ 'password'}
+  let(:body){ 'body'}
+  let(:title){ 'title' }
+  let(:note_data){
+    {
+      password: password, 
+      body: body, 
+      title: title
+    } 
+  }
+
   describe 'POST /notes' do
-    before{ post('/notes', {note: { password: '12345', body: 'abc', title: 'abc'}}) }
+    before{ post('/notes', { note: note_data }) }
 
     it 'returns success' do
       expect(last_response.status).to eq(201)
@@ -11,12 +22,12 @@ describe 'Note API' do
   end
 
   describe 'GET /notes/:api' do
-    let(:password){ '00000999'}
-    let(:body){ 'ased'}
-    let(:title){ 'asdasdsad' }
-    let(:id){ note = Note.new(body: body, password: password, title: title); note.save; note.id }
+    let(:id) do
+      note = Note.new note_data 
+      note.save and note.id
+    end
 
-    before{ get("/notes/#{id}", {password: password})}
+    before{ get("/notes/#{id}", { password: password })}
 
     it 'returns success' do
       expect(last_response.status).to eq(200)

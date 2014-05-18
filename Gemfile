@@ -6,4 +6,3 @@ group :test do
   gem 'rack-test'
 end
 
-gem 'debugger'
