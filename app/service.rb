@@ -3,7 +3,7 @@ require_relative 'models/note'
 
 Dir[File.dirname(__FILE__) + '/models/note/*.rb'].each {|file| require file }
 
-class NotesAPI < Sinatra::Base
+class NoteAPI < Sinatra::Base
   post '/notes' do
     note = Note.new(params[:note])
     note.save

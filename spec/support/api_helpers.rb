@@ -2,7 +2,7 @@ module ApiHelpers
   include Rack::Test::Methods
   
   def app
-    NotesAPI
+    NoteAPI
   end
 
   def json
