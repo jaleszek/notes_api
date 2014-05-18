@@ -1,9 +1,8 @@
 require 'sinatra/base'
-require_relative 'models/note'
-
-Dir[File.dirname(__FILE__) + '/models/note/*.rb'].each {|file| require file }
+require_relative 'models/init'
 
 class NoteAPI < Sinatra::Base
+  configure { set :show_exceptions, false }
   post '/notes' do
     note = Note.new(params[:note])
     note.save
@@ -19,5 +18,10 @@ class NoteAPI < Sinatra::Base
     status 200
 
     note.as_json
+  end
+
+  error do
+    status 404
+    { error: 1 }.to_json
   end
 end
