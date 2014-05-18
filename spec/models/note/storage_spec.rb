@@ -28,7 +28,7 @@ describe Note::Storage do
   end
 
   describe '#read' do
-    it 'reads what wrote previously' do
+    it 'finds proper file by id' do
       id = subject.write(content)
       expect(subject.read(id)).to eq(content)
     end

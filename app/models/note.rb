@@ -13,6 +13,16 @@ class Note
     new look_for_and_deserialize(id, password)
   end
 
+  def as_json
+    {
+      note: {
+        id: id,
+        title: title,
+        body: body
+      } 
+    }.to_json
+  end
+
   private
 
   def serialize_and_save_to_storage

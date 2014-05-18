@@ -6,7 +6,7 @@ describe Note::Serialization do
   let(:note){ {'title' => 'title', 'body' => 'body', 'id'=> 'id'}}
 
   describe 'serialization' do
-    it 'handles with serialization' do
+    it 'serializes given hash' do
       serialized = subject.serialize(note)
 
       deserialized = subject.deserialize(serialized)

@@ -18,6 +18,6 @@ class NotesAPI < Sinatra::Base
 
     status 200
 
-    { note: { id: note.id, title: note.title, body: note.body} }.to_json
+    note.as_json
   end
 end
